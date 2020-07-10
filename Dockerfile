@@ -29,9 +29,11 @@ RUN curl https://raw.githubusercontent.com/blendle/kns/master/bin/kns -o /usr/lo
 
 #####
 
-RUN curl -L https://golang.org/dl/go1.14.4.linux-amd64.tar.gz | tar -C /usr/local -xzf - ; \
+RUN apt update && apt install -y build-essential ; rm -rf /var/lib/apt/lists/* ; \
+    curl -L https://golang.org/dl/go1.14.4.linux-amd64.tar.gz | tar -C /usr/local -xzf - ; \
     curl -L https://go.kubebuilder.io/dl/2.3.1/linux/amd64 | tar -xz -C /tmp/ ; \
-    mv /tmp/kubebuilder_2.3.1_linux_amd64 /usr/local/kubebuilder
+    mv /tmp/kubebuilder_2.3.1_linux_amd64 /usr/local/kubebuilder ; \
+    cd /usr/local/bin ; curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 RUN apt update && apt install -y libarchive-tools ; rm -rf /var/lib/apt/lists/* ; \
     mkdir -p /home/cnde/.local/share/code-server/extensions ; \
