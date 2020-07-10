@@ -20,8 +20,9 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
 RUN curl -L https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 -o /usr/local/bin/stern; \
     chmod +x /usr/local/bin/stern
 
-RUN apt-get update; apt-get install -y zsh; rm -rf /var/lib/apt/lists/*;
-RUN chsh -s /bin/zsh
+RUN apt-get update; apt-get install -y zsh; rm -rf /var/lib/apt/lists/*; \
+    chsh -s /bin/zsh
+COPY settings.json /home/cnde/.local/share/code-server/User/settings.json
 ENV SHELL=/bin/zsh
 
 RUN curl https://raw.githubusercontent.com/blendle/kns/master/bin/kns -o /usr/local/bin/kns; \ 
