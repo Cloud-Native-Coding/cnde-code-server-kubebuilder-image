@@ -56,3 +56,7 @@ RUN sudo chown -R cnde .
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
 
 WORKDIR /home/cnde/project
+
+#####
+
+RUN git clone https://github.com/Cloud-Native-Coding/operator-with-kubebuilder.git example/operators/cronjob
